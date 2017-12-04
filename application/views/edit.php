@@ -11,10 +11,6 @@
         	<br/>
             <form action="<?php echo base_url() ?>index.php/login/update_data" method="post">
         		<div class="form-group">
-        			<label>NPM :</label>
-        			<input type="text" class="form-control" name="npm" value="<?php echo $mhs->npm;?>">
-        		</div>
-        		<div class="form-group">
         			<label>NAMA :</label>
         			<input type="text" class="form-control" name="nama" value="<?php echo $mhs->nama;?>">
         		</div>

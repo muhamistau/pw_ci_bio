@@ -2,21 +2,37 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_user extends CI_Model {
-	public function input($npm, $nama, $alamat, $jk)
+	public function login($userdata)
 	{
-		$data = array(
-	        'npm' => $npm,
-	        'nama' => $nama,
-	        'alamat' => $alamat,
-	        'jk' => $jk
+		$result = $this->db->get_where('users',
+			array( 
+				'username'=> $userdata['username'],
+				'password' => $userdata['password'] 
+			) 
 		);
+		return $result;
+	}
+	
+	public function input($identitas, $users)
+	{
 
-		$this->db->insert('identitas', $data);
+		if( $this->db->insert('identitas', $identitas) && $this->db->insert('users', $users) )
+		{
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 
-	public function tampil()
+	public function tampilAll()
 	{
 		$query = $this->db->get('identitas');
+		return $query;
+	}
+
+	public function tampilByUser($npm)
+	{
+		$query = $this->db->get_where('identitas', array('npm' => $npm));
 		return $query;
 	}
 
